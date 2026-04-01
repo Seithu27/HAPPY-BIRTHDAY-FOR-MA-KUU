@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY BIRTHDAY</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="Website.css">
+</head>
+<body>
+
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="main-container">
+        <div id="countdown">3</div>
+
+        <div id="surprise-section" class="hidden">
+            <div id="typing-text" class="typing"></div>
+            
+            <div class="envelope-wrapper hidden" id="envelopeWrapper" onclick="openEnvelope()">
+                <div class="envelope" id="envelope">
+                    <div class="heart-icon">❤️</div>
+                    <div class="drag-text">Tap to open</div>
+                </div>
+            </div>
+
+            <div class="card-inside hidden" id="cardInside" onclick="triggerExplosion()">
+                <div class="inside-wrapper">
+                    <h2 class="happy-bday-text">HAPPY BIRTHDAY KUU❤️</h2>
+                    
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="Ma_1.jpg" alt="Memory 1"></div>
+                            <div class="swiper-slide"><img src="MA_2.jpg" alt="Memory 2"></div>
+                            <div class="swiper-slide"><img src="Ma_3.jpg" alt="Memory 3"></div>
+                            <div class="swiper-slide"><img src="Ma_4.jpg" alt="Memory 4"></div>
+                            <div class="swiper-slide"><img src="Ma_5.jpg" alt="Memory 5"></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+
+                    <div class="heart-animated">❤️</div>
+                    <p style="color: #ff3385; font-size: 0.7rem; margin-top: 5px;">(Tap to see magic ✨)</p>
+                </div>
+            </div>
+
+            <div id="heart-collage-stage" class="hidden">
+                <div id="photo-heart-container"></div>
+                <div class="final-heart-beat">❤️</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="Website.js"></script>
+</body>
+</html>

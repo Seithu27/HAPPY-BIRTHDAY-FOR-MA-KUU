@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+}
+
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.main-container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+#countdown {
+    color: #ff3385;
+    font-size: 10rem;
+    font-weight: bold;
+    text-shadow: 0 0 20px #ff3385;
+}
+
+/*.typing {
+    color: #ff3385;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    min-height: 2.2rem;
+
+    white-space: nowrap;
+    overflow: visible;
+    display: inline-block;
+    width: auto;
+    margin-left: -25%;
+}
+
+.main-container {
+    text-align: center;
+}*/
+
+.typing, #dynamic-text {
+    width: 90%;            /* Screen အပြည့်နီးပါး ယူထားမယ် */
+    max-width: 400px;      /* ဒါပေမယ့် အရမ်းကြီးမသွားအောင် ကန့်သတ်မယ် */
+    margin: 0 auto 20px;   /* အလယ်ပို့ပြီး အောက်ကို margin ချန်မယ် */
+    
+    /* စာသားအရွယ်အစားကို Responsive ဖြစ်စေရန် */
+    font-size: clamp(1.2rem, 5vw, 2rem); 
+    
+    text-align: center;
+    display: block;
+    white-space: normal;   /* စာသားအရမ်းရှည်ရင် အောက်ကြောင်းဆင်းပေးဖို့ */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Container ကို အလယ်မှာ အမြဲရှိနေစေဖို့ */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 15px; /* ဘေးကပ်မသွားအောင် padding ထည့်မယ် */
+}
+
+@media (max-width: 480px) {
+    .typing, #dynamic-text {
+        font-size: 1.2rem; /* ဖုန်းမှာ စာလုံးအရွယ်အစားကို နည်းနည်းလျှော့မယ် */
+        margin-bottom: 15px;
+    }
+    
+    .envelope-wrapper {
+        width: 160px; /* Box ကိုလည်း နည်းနည်း သေးပေးမယ် */
+        height: 120px;
+    }
+}
+
+/* ----------------- */
+@media (max-width: 380px) {
+    .typing {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Envelope --- */
+.envelope-wrapper {
+    width: 200px;
+    height: 150px;
+    margin: 0 auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border: 3px solid #ff3385;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(255, 51, 133, 0.4);
+}
+
+.heart-icon { font-size: 4rem; color: #ff3385; }
+.drag-text { color: #ff3385; font-size: 0.8rem; letter-spacing: 2px; }
+
+.launching {
+    animation: launchEnvelope 0.8s forwards;
+}
+
+@keyframes launchEnvelope {
+    100% { transform: translateY(-600px); opacity: 0; }
+}
+
+/* --- Inside Card --- */
+.card-inside {
+    position: relative;
+    width: 320px;
+    height: 420px;
+    margin: 0 auto;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.inside-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 15px;
+    border: 3px solid #ff3385;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: rotateY(-180deg);
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+}
+
+.card-inside.open .inside-wrapper {
+    transform: rotateY(0deg);
+    opacity: 1;
+}
+
+.happy-bday-text { color: #ff3385; font-size: 1rem; font-weight: bold; margin-bottom: 15px; }
+
+.swiper { width: 100%; height: 250px; border-radius: 10px; border: 1px solid #ddd; }
+.swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+
+.heart-animated {
+    font-size: 2.5rem;
+    animation: heartBeat 1.2s infinite;
+}
+
+
+/* --- Final Hollow Heart Stage --- */
+#heart-collage-stage {
+    position: relative;
+    width: 350px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.mini-photo {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+    border: 2px solid #ff3385;
+    object-fit: cover;
+    opacity: 0;
+    box-shadow: 0 0 15px rgba(255, 51, 133, 0.6);
+    transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+}
+
+/* Perfect Center Animated Heart */
+.final-heart-beat {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* ဗဟိုချက် အတိအကျညှိခြင်း */
+    font-size: 4rem;
+    color: #ff3385;
+    animation: centerHeartBeat 0.8s infinite;
+    z-index: 10; /* ဓာတ်ပုံတွေရဲ့ အပေါ်ကနေ ပေါ်လာစေရန် */
+}
+
+@keyframes centerHeartBeat {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.3); }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+.hidden { display: none; }
